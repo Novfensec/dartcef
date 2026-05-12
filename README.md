@@ -4,7 +4,7 @@ OpenCEF provides standalone shared libraries to easily embed the Chromium Embedd
 **Experimental and it works damn good.**
 
 > [!NOTE]
-> Similar project [pybindcef](https://github.com)
+> Similar project [pybindcef](https://github.com/novfensec/pybindcef)
 
 ## Financial Support
 If and only if you want to support me anyhow:
