@@ -25,7 +25,7 @@ bool platform_initialize_cef(const std::string& sub_path, const std::string& res
     std::string log_p = res_path + "/cef.log";
     CefString(&settings.log_file).FromASCII(log_p.c_str());
 
-    CefRefPtr<DartCefApp> app(new DartCefApp(res_path));
+    CefRefPtr<OpenCefApp> app(new OpenCefApp(res_path));
 
     return CefInitialize(args, settings, app, nullptr);
 }
