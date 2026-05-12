@@ -6,27 +6,27 @@
 #include <cstdint>
 
 #if defined(_WIN32)
-#define DART_EXPORT extern "C" __declspec(dllexport)
+#define OPEN_EXPORT extern "C" __declspec(dllexport)
 #else
-#define DART_EXPORT extern "C" __attribute__((visibility("default"))) __attribute__((used))
+#define OPEN_EXPORT extern "C" __attribute__((visibility("default"))) __attribute__((used))
 #endif
 
 CefRefPtr<CefBrowser> g_browser;
 CefRefPtr<MainClient> g_client;
 
-DART_EXPORT void initialize(const char *sub_path, const char *res_path)
+OPEN_EXPORT void initialize(const char *sub_path, const char *res_path)
 {
     platform_initialize_cef(
         sub_path ? std::string(sub_path) : "",
         res_path ? std::string(res_path) : "");
 }
 
-typedef void (*DartPaintCallback)(const void *buffer, int width, int height);
-typedef void (*DartAccelPaintCallback)(void *shared_handle);
+typedef void (*OPENPaintCallback)(const void *buffer, int width, int height);
+typedef void (*OPENAccelPaintCallback)(void *shared_handle);
 
-DART_EXPORT void create_browser(const char *url,
-                                DartPaintCallback cb,
-                                DartAccelPaintCallback acb,
+OPEN_EXPORT void create_browser(const char *url,
+                                OPENPaintCallback cb,
+                                OPENAccelPaintCallback acb,
                                 bool shared_texture_enabled,
                                 int fps)
 {
@@ -54,7 +54,7 @@ DART_EXPORT void create_browser(const char *url,
     CefBrowserHost::CreateBrowser(window_info, g_client, url ? std::string(url) : "", settings, nullptr, nullptr);
 }
 
-DART_EXPORT void load_url(const char *url)
+OPEN_EXPORT void load_url(const char *url)
 {
     if (url && g_browser && g_browser->GetMainFrame())
     {
@@ -62,7 +62,7 @@ DART_EXPORT void load_url(const char *url)
     }
 }
 
-DART_EXPORT void resize(int w, int h)
+OPEN_EXPORT void resize(int w, int h)
 {
     if (g_client && g_browser)
     {
@@ -73,12 +73,12 @@ DART_EXPORT void resize(int w, int h)
     }
 }
 
-DART_EXPORT void do_work()
+OPEN_EXPORT void do_work()
 {
     CefDoMessageLoopWork();
 }
 
-DART_EXPORT void shutdown_cef()
+OPEN_EXPORT void shutdown_cef()
 {
     if (g_browser && g_browser->GetHost())
     {
@@ -89,14 +89,14 @@ DART_EXPORT void shutdown_cef()
     CefShutdown();
 }
 
-DART_EXPORT void set_focus(bool focused)
+OPEN_EXPORT void set_focus(bool focused)
 {
     if (!g_browser || !g_browser->GetHost())
         return;
     g_browser->GetHost()->SetFocus(focused);
 }
 
-DART_EXPORT void send_mouse_event(int x, int y, int event_type, bool is_up, int button_type)
+OPEN_EXPORT void send_mouse_event(int x, int y, int event_type, bool is_up, int button_type)
 {
     if (!g_browser || !g_browser->GetHost())
         return;
@@ -117,7 +117,7 @@ DART_EXPORT void send_mouse_event(int x, int y, int event_type, bool is_up, int 
     }
 }
 
-DART_EXPORT void send_key_event(int key_code, int native_key_code, uint32_t modifiers, int type)
+OPEN_EXPORT void send_key_event(int key_code, int native_key_code, uint32_t modifiers, int type)
 {
     if (!g_browser || !g_browser->GetHost())
         return;
@@ -137,7 +137,7 @@ DART_EXPORT void send_key_event(int key_code, int native_key_code, uint32_t modi
     g_browser->GetHost()->SendKeyEvent(event);
 }
 
-DART_EXPORT void send_mouse_wheel(int x, int y, int delta_x, int delta_y)
+OPEN_EXPORT void send_mouse_wheel(int x, int y, int delta_x, int delta_y)
 {
     if (g_browser && g_browser->GetHost())
     {
@@ -150,19 +150,19 @@ DART_EXPORT void send_mouse_wheel(int x, int y, int delta_x, int delta_y)
     }
 }
 
-DART_EXPORT void go_back()
+OPEN_EXPORT void go_back()
 {
     if (g_browser && g_browser->CanGoBack())
         g_browser->GoBack();
 }
 
-DART_EXPORT void go_forward()
+OPEN_EXPORT void go_forward()
 {
     if (g_browser && g_browser->CanGoForward())
         g_browser->GoForward();
 }
 
-DART_EXPORT void reload()
+OPEN_EXPORT void reload()
 {
     if (g_browser)
         g_browser->Reload();

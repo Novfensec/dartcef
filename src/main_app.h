@@ -4,9 +4,9 @@
 #include "include/cef_app.h"
 #include "include/cef_command_line.h"
 
-class DartCefApp : public CefApp {
+class OpenCefApp : public CefApp {
 public:
-    explicit DartCefApp(const std::string& res_path);
+    explicit OpenCefApp(const std::string& res_path);
 
     void OnBeforeCommandLineProcessing(const CefString& process_type, 
                                        CefRefPtr<CefCommandLine> command_line) override;
@@ -14,5 +14,5 @@ public:
 private:
     std::string resources_path_;
 
-    IMPLEMENT_REFCOUNTING(DartCefApp);
+    IMPLEMENT_REFCOUNTING(OpenCefApp);
 };
