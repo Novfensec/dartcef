@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(dartcef)
+project(opencef)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -38,38 +38,38 @@ set(SOURCES
 )
 
 if(WIN32)
-    message(STATUS "Configuring dartcef for Windows")
+    message(STATUS "Configuring opencef for Windows")
     add_compile_definitions(NOMINMAX)
     list(APPEND SOURCES 
         src/platforms/win/app_win.cpp
         src/platforms/win/gpu_mapper.cpp
     )
 elseif(UNIX AND NOT APPLE AND NOT ANDROID)
-    message(STATUS "Configuring dartcef for Linux")
+    message(STATUS "Configuring opencef for Linux")
     list(APPEND SOURCES 
         src/platforms/linux/app_linux.cpp
         src/platforms/linux/gpu_mapper.cpp
     )
 endif()
 
-add_library(dartcef SHARED ${SOURCES})
+add_library(opencef SHARED ${SOURCES})
 
 if(WIN32)
-    target_link_libraries(dartcef PRIVATE
+    target_link_libraries(opencef PRIVATE
         ${CEF_DLL_WRAPPER_ROOT}/libcef_dll_wrapper.lib
         ${CEF_ROOT}/Release/libcef.lib
         d3d11.lib
         opengl32.lib
     )
-    set_property(TARGET dartcef PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
+    set_property(TARGET opencef PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
 else()
-    target_link_libraries(dartcef PRIVATE
+    target_link_libraries(opencef PRIVATE
         ${CEF_DLL_WRAPPER_ROOT}/libcef_dll_wrapper.a
         ${CEF_ROOT}/Release/libcef.so
     )
-    set_target_properties(dartcef PROPERTIES
+    set_target_properties(opencef PROPERTIES
         INSTALL_RPATH_USE_LINK_PATH TRUE
     )
 endif()
 
-install(TARGETS dartcef DESTINATION .)
+install(TARGETS opencef DESTINATION .)

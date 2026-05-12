@@ -1,5 +1,5 @@
-# dartcef
-High-performance Dart bindings for Chromium Embedded Framework (CEF)
+# opencef
+High-performance bindings for Chromium Embedded Framework (CEF)
 
 **Experimental and it works damn good.**
 
@@ -104,21 +104,21 @@ You cann follow build instructions for `libcef_dll_wrapper` from here: https://y
 
     A file named `libcef_dll_wrapper.lib` will be listed.
 
-### Building `dartcef` library
+### Building `opencef` library
 
 - Linux
 
     Clone this repository.
 
     ```bash
-    git clone https://github.com/Novfensec/dartcef -b main --single-branch --depth 1
+    git clone https://github.com/Novfensec/opencef -b main --single-branch --depth 1
     ```
 
     Now build the library:
 
     ```bash
-    mkdir dartcef/build
-    cd dartcef/build
+    mkdir opencef/build
+    cd opencef/build
 
     cmake ..
     make
@@ -129,28 +129,28 @@ You cann follow build instructions for `libcef_dll_wrapper` from here: https://y
     Clone this repository.
 
     ```bash
-    git clone https://github.com/Novfensec/dartcef -b main --single-branch --depth 1
+    git clone https://github.com/Novfensec/opencef -b main --single-branch --depth 1
     ```
 
     Now build the extension.
 
     ```powershell
-    mkdir dartcef/build
-    cd dartcef/build
+    mkdir opencef/build
+    cd opencef/build
 
     cmake ..
     cmake --build . --config Release
     ```
 
-Navigate to build/Release folder to find `libdartcef.so` (linux) or `dartcef.dll`(windows) library.
+Navigate to build/Release folder to find `libopencef.so` (linux) or `opencef.dll`(windows) library.
 
 ### Building `cef_worker`
 
 - Linux
 
     ```bash
-    mkdir dartcef/cef_worker/build
-    cd dartcef/cef_worker/build
+    mkdir opencef/cef_worker/build
+    cd opencef/cef_worker/build
 
     cmake ..
     make
@@ -159,8 +159,8 @@ Navigate to build/Release folder to find `libdartcef.so` (linux) or `dartcef.dll
 - Window
 
     ```powershell
-    mkdir dartcef/cef_worker/build
-    cd dartcef/cef_worker/build
+    mkdir opencef/cef_worker/build
+    cd opencef/cef_worker/build
 
     cmake ..
     cmake --build . --config Release
@@ -178,5 +178,5 @@ Navigate to build/Release folder to find `libdartcef.so` (linux) or `dartcef.dll
 
 - Windows
 
-    Copy all files under `cef_binary/Resources` and `cef_binary/Release` right next to the `dartcef.dll` library from wherever you are accessing it.
+    Copy all files under `cef_binary/Resources` and `cef_binary/Release` right next to the `opencef.dll` library from wherever you are accessing it.
     All you need to do is make `libcef.dll` available in LD_LIBRARY_PATH and place the files under `cef_binary/Resources` next to `libcef.dll` that's it.
