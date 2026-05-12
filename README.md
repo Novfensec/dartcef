@@ -3,8 +3,8 @@ High-performance Dart bindings for Chromium Embedded Framework (CEF)
 
 **Experimental and it works damn good.**
 
-> [!INFO]
-> Similar to [pybindcef](https://github.com)
+> [!NOTE]
+> Similar project [pybindcef](https://github.com)
 
 ## Financial Support
 If and only if you want to support me anyhow:
