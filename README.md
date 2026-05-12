@@ -1,5 +1,5 @@
 # opencef
-High-performance bindings for Chromium Embedded Framework (CEF)
+OpenCEF provides standalone shared libraries to easily embed the Chromium Embedded Framework (CEF) into your applications.
 
 **Experimental and it works damn good.**
 
